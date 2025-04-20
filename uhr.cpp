@@ -64,10 +64,10 @@
      for (n = lower; n <= upper; n += step) {
          mean_time = 0;
          time_stdev = 0;
- 
-         // Test configuration goes here
+    
          // Generate random points for this test run
-         std::vector<Point> points = generateRandomPoints(n, 1000);
+        std::vector<Point> points = generateRandomPoints(n, 1000);
+         //std::vector<Point> points = generateRandomPoints(2^n, 100);
  
          // Run to compute elapsed time
          for (i = 0; i < runs; i++) {
@@ -108,5 +108,5 @@
  
      time_data.close();
  
-     return 0;
+     return 0; float
  }

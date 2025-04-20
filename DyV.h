@@ -61,7 +61,7 @@ vector<Point> getSortedPoints(const vector<Point>& points, char coord) {
 
 //Loop principal de la funcion DyV
 
-double closestPairRec(const vector<Point>& Px, const vector<Point>& Py) {
+float closestPairRec(const vector<Point>& Px, const vector<Point>& Py) {
     int n = Px.size();
     if (n <= 3)
         return bruteForce(Px);
@@ -80,9 +80,9 @@ double closestPairRec(const vector<Point>& Px, const vector<Point>& Py) {
             Ry.push_back(p);
     }
 
-    double delta1 = closestPairRec(Qx, Qy);
-    double delta2 = closestPairRec(Rx, Ry);
-    double delta = min(delta1, delta2);
+    float delta1 = closestPairRec(Qx, Qy);
+    float delta2 = closestPairRec(Rx, Ry);
+    float delta = min(delta1, delta2);
 
     // Puntos cercanos a la línea de división (dentro de delta)
     vector<Point> strip;
@@ -94,7 +94,7 @@ double closestPairRec(const vector<Point>& Px, const vector<Point>& Py) {
     // Comparar hasta los siguientes 11 vecinos
     for (int i = 0; i < strip.size(); ++i) {
         for (int j = i + 1; j < strip.size() && j <= i + 11; ++j) {
-            double d = distance(strip[i], strip[j]);
+            float d = distance(strip[i], strip[j]);
             if (d < delta)
                 delta = d;
         }
@@ -103,7 +103,7 @@ double closestPairRec(const vector<Point>& Px, const vector<Point>& Py) {
     return delta;
 }
 
-double closestPair(vector<Point>& points) {
+float closestPair(vector<Point>& points) {
     if (points.size() < 2) return 0.0;
 
     vector<Point> Px = getSortedPoints(points, 'x');
