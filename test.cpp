@@ -5,6 +5,8 @@
 #include <cassert>
 #include <cstdlib>
 #include <ctime>
+#include "BruteFMejorado.h"
+#include "DyVMejorado.h"
 
 using namespace std;
 
@@ -24,10 +26,14 @@ void testClosestPair() {
     for (int numPoints : {5, 10, 50, 100, 500}) {
         vector<Point> points = generateRandomPoints(numPoints, 1000);
 
-        float bruteForceResult = bruteForce(points);
-        float dyvResult = closestPair(points);
+        /* for(int i = 0; i < points.size(); i++) {
+            cout << "(" << points[i].x << " , " << points[i].y << ")" << endl;
+        } */
 
-        // Allow a small tolerance for floating-point comparisons
+        double bruteForceResult = bruteForce_optimized(points);
+        double dyvResult = closestPair_optimized(points);
+
+        // Allow a small tolerance for doubleing-point comparisons
         assert(abs(bruteForceResult - dyvResult) < 1e-6);
 
         cout << "Test passed for " << numPoints << " points." << endl;
