@@ -76,7 +76,7 @@
  
              begin_time = std::chrono::high_resolution_clock::now();
              // Function to test goes here
-             float result = closestPair(points); // Cambiar a bruteForce(points) o closestPair(points) junto con el nombre del csv
+             double result = closestPair(points); // Cambiar a bruteForce(points) o closestPair(points) junto con el nombre del csv
              end_time = std::chrono::high_resolution_clock::now();
  
              elapsed_time = end_time - begin_time;
@@ -108,5 +108,5 @@
  
      time_data.close();
  
-     return 0; float
- }
+     return 0;
+}

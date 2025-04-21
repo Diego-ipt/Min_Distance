@@ -24,10 +24,10 @@ void testClosestPair() {
     for (int numPoints : {5, 10, 50, 100, 500}) {
         vector<Point> points = generateRandomPoints(numPoints, 1000);
 
-        float bruteForceResult = bruteForce(points);
-        float dyvResult = closestPair(points);
+        double bruteForceResult = bruteForce(points);
+        double dyvResult = closestPair(points);
 
-        // Allow a small tolerance for floating-point comparisons
+        // Allow a small tolerance for doubleing-point comparisons
         assert(abs(bruteForceResult - dyvResult) < 1e-6);
 
         cout << "Test passed for " << numPoints << " points." << endl;
