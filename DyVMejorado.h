@@ -7,6 +7,7 @@
 #include <cmath>
 #include <limits>
 #include "BruteFMejorado.h"
+#include "BruteF.h"
 #include "DyV.h"
 
 using namespace std;
@@ -30,7 +31,7 @@ using namespace std;
 double closestPairRec_optimized(const vector<Point>& Px, const vector<Point>& Py) {
     int n = Px.size();
     if (n <= 3)
-        return bruteForce_optimized(Px);  // Devuelve la distancia real (euclidiana)
+        return bruteForce(Px);  // Devuelve la distancia real (euclidiana)
 
     int mid = n / 2;
     Point midPoint = Px[mid];
