@@ -21,6 +21,11 @@ using namespace std;
 }
  */
 
+double distance_sin_raiz(const Point& p1, const Point& p2) {
+    return (p1.x - p2.x) * (p1.x - p2.x) +
+           (p1.y - p2.y) * (p1.y - p2.y);
+}
+
 //utilizando el merge sort a mano
 vector<Point> sort_by_X_coord(const vector<Point>& P) {
     return getSortedPoints(P, 'x');
@@ -38,12 +43,12 @@ double bruteForce_optimized(const vector<Point>& P) {
 
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
-            if ((sorted[j].x - sorted[i].x) >= minDist)
-                break;  // aca termina
-            double d = distance(sorted[i], sorted[j]);
-            if (d < minDist) {
-                minDist = d;
-               /*  a = sorted[i];
+            if ((sorted[j].x - sorted[i].x) * (sorted[j].x - sorted[i].x) >= minDist)
+                break;
+            double dist = distance_sin_raiz(sorted[i], sorted[j]);
+            if (dist < minDist) {
+                minDist = dist;
+                /* a = sorted[i];
                 b = sorted[j]; */
             }
         }
@@ -51,7 +56,7 @@ double bruteForce_optimized(const vector<Point>& P) {
 
     //cout << "(" << a.x << ", " << a.y << ")" << " (" << b.x << ", " << b.y << ")" << endl;
 
-    return minDist;
+    return sqrt(minDist);
 }
 
 
