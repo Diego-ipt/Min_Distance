@@ -78,7 +78,6 @@ double closestPairRec_optimized(const vector<Point>& Px, const vector<Point>& Py
     int mid = n / 2;
     const Point& midPoint = Px[mid];
 
-    // Evitamos copias usando insert con rango (más eficiente que bucle con push_back)
     vector<Point> Qx, Rx;
     Qx.insert(Qx.end(), Px.begin(), Px.begin() + mid);
     Rx.insert(Rx.end(), Px.begin() + mid, Px.end());
@@ -99,16 +98,15 @@ double closestPairRec_optimized(const vector<Point>& Px, const vector<Point>& Py
     double min_dist = min(left_min_dist, right_min_dist);
     double min_dist_pow = min_dist * min_dist;
 
-    // Crear strip sin copiar de más
     vector<Point> strip;
-    strip.reserve(n);  // Máximo tamaño posible
+    strip.reserve(n);
 
     for (const Point& p : Py) {
         if ((p.x - midPoint.x) * (p.x - midPoint.x) < min_dist_pow)
             strip.push_back(p);
     }
 
-    // Limita a 7 vecinos siguientes
+    // se limita a 7 vecinos siguientes, puesto que es el numero maximo demostrado matematicamente
     for (size_t i = 0; i < strip.size(); ++i) {
         for (size_t j = i + 1; j < strip.size() && j <= i + 7; ++j) {
             double dist = distance_sin_raiz(strip[i], strip[j]);
