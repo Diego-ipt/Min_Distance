@@ -22,8 +22,8 @@
  #include "utils.cpp"
  
  // Include to be tested files here
- #include "BruteF.h"
- #include "DyV.h"
+ #include "BruteFMejorado.h"
+ #include "DyVMejorado.h"
  
  // Function to generate random points
  int v;
@@ -52,7 +52,7 @@
      double mean_time, time_stdev, dev;
      auto begin_time = std::chrono::high_resolution_clock::now();
      auto end_time = std::chrono::high_resolution_clock::now();
-     std::chrono::duration<double, std::nano> elapsed_time = end_time - begin_time; //milliseconds para valores grandes de n segun algoritmos
+     std::chrono::duration<double, std::milli> elapsed_time = end_time - begin_time; //milliseconds para valores grandes de n segun algoritmos, nano analisis
  
      // File to write time data
      std::ofstream time_data;
@@ -67,8 +67,8 @@
          time_stdev = 0;
     
          // Generate random points for this test run
-        v = pow(2, n); //para analisis experimental
-        std::vector<Point> points = generateRandomPoints(v, 100);
+        //v = pow(2, n); //para analisis experimental
+        std::vector<Point> points = generateRandomPoints(n, 100); //cambiar por n por v para 2^n
  
          // Run to compute elapsed time
          for (i = 0; i < runs; i++) {
@@ -77,7 +77,7 @@
  
              begin_time = std::chrono::high_resolution_clock::now();
              // Function to test goes here
-             float result = bruteForce(points); // Cambiar a bruteForce(points) o closestPair(points) junto con el nombre del csv
+             float result = closestPair(points); // Cambiar a bruteForce(points) o closestPair(points) junto con el nombre del csv
              end_time = std::chrono::high_resolution_clock::now();
  
              elapsed_time = end_time - begin_time;
