@@ -17,7 +17,7 @@ plt.plot(df4['n'], df2['t_mean'], label='Improved Divide and Conquer', marker='x
 
 # x=labels and y=labels
 plt.ylabel('Running time (millieseconds)')
-plt.xlabel('Input time (n)')
+plt.xlabel('Input size (n)')
 
 # show legend
 plt.legend()
